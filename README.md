@@ -1,21 +1,6 @@
-# Third-person Fighting
+# Third-person fighting
 
-Hawt Dawg Man: Mustard Party 2 is a mobile game originally implemented in The Awesome Adventures of Captain Spirit.    
-Chris Eriksen, the main character, can play it on his father's phone during the gameplay.
-
-As a big fan of the Life is Strange game series, I decided to create the most similar clone of Mustard Party 2 using Unity, implementing all the main mechanics.    
-Hope I succeded.
-
-## Tools
-
-![image](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white) 
-![image](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white) 
-
-## Setup
-
-1. Install Unity 2020.3.32 from [archive](https://unity3d.com/get-unity/download/archive).    
-2. Clone this repository using `git clone https://github.com/vyshnovka/3rd-person-fighting.git` in Git Bash.    
-4. Open created folder as a project in Unity Hub.    
+This repository contains the test task for the Junior Unity Developer position at Midnight.Works.
 
 ## Task
 
@@ -36,8 +21,18 @@ him.
 - The enemy and and the player should have life bars, each equipped item
 should have different hit points when in use.    
 
-[ADDITIONAL TASKS REGARDING INTERNSHIP]
+[Additionally]
 
-- ANY WEAPON SHOULD BE RANGED, WHICH MEANS YOU SHOULD MAKE 3 DIFFERENT
-RANGED WEAPONS (HANDGUNS, ASSAULT RIFLES, GRENADE LAUNCHER, FOR EXAMPLE).
+- Any weapon should be ranged, which means you should make 3 different ranged weapons.
+
+## Tools
+
+![image](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white) 
+![image](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white) 
+
+## Setup
+
+1. Install Unity 2020.3.32 from [archive](https://unity3d.com/get-unity/download/archive).    
+2. Clone this repository using `git clone https://github.com/vyshnovka/3rd-person-fighting.git` in Git Bash.    
+4. Open created folder as a project in Unity Hub.    
 
