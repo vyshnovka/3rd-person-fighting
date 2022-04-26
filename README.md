@@ -18,7 +18,7 @@ Create a small fighting game with a 3rd person camera view.
 for seeing the player. When the enemy sees the player it starts chasing
 him and when it approaches the player close enough it starts fighting
 him.    
-- The enemy and and the player should have life bars, each equipped item
+- The enemy and the player should have life bars, each equipped item
 should have different hit points when in use.    
 
 [Additionally]
