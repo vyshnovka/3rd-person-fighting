@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
     private CharacterController characterController;
     [NonSerialized]
@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private float inputX = 0;
     private float inputZ = 0;
 
-    private bool canMove = true;
+    [NonSerialized]
+    public bool canMove = true;
 
     [SerializeField]
     private GameObject hand;
@@ -56,21 +57,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && canMove)
-        {
-            Attack();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Block();
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            canMove = true;
-            characterAnimator.SetBool("isBlocking", false);
-        }
-
-
         if (Input.GetKeyDown(KeyCode.E) && availableItem && canMove)
         {
             Pick(availableItem);
@@ -93,14 +79,16 @@ public class PlayerController : MonoBehaviour
     {
         if (inventory.AddToInventory(itemToPick))
         {
+            availableItem = null;
+
             canMove = false;
             characterAnimator.SetBool("isPicking", true);
 
             StartCoroutine(Utility.TimedEvent(() =>
             {
                 itemToPick.transform.parent = hand.transform;
-                itemToPick.transform.localPosition = hand.transform.localPosition;
-                itemToPick.transform.localRotation = hand.transform.localRotation;
+                itemToPick.transform.position = hand.transform.position;
+                itemToPick.transform.rotation = hand.transform.rotation;
 
                 inventory.FirstEquip(itemToPick);
             }, 1.5f));
@@ -117,23 +105,6 @@ public class PlayerController : MonoBehaviour
         characterAnimator.runtimeAnimatorController = defaultAnimator;
         inventory.RemoveFromInventory();
     }
-
-    private void Attack()
-    {
-        canMove = false;
-        characterAnimator.SetBool("isAttacking", true);
-
-        StartCoroutine(Utility.TimedEvent(() =>
-        {
-            canMove = true;
-        }, 1.2f));
-    }
-
-    private void Block()
-    {
-        canMove = false;
-        characterAnimator.SetBool("isBlocking", true);
-    } 
 
     private void AnimateMovement()
     {
