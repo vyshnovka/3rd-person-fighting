@@ -4086,6 +4086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8143519910445393989}
   - component: {fileID: 6770885892075962656}
+  - component: {fileID: 7016031268575998060}
   - component: {fileID: 8811372500464923388}
   - component: {fileID: 8811372500464923389}
   m_Layer: 0
@@ -4130,6 +4131,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &7016031268575998060
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811372500464923391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &8811372500464923388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4155,7 +4170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e90543943d4e7b48b4407e62191d2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 705563671569720157}
 --- !u!1 &8888555792346978702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,6 +4352,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -1019498502312071327, guid: addaf8336d2dd95458615aa770c63c22, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: addaf8336d2dd95458615aa770c63c22, type: 3}
+--- !u!1 &705563671569720157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948651370056259928, guid: addaf8336d2dd95458615aa770c63c22, type: 3}
+  m_PrefabInstance: {fileID: 7459617007994239493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &705563671569407677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7948651370056639672, guid: addaf8336d2dd95458615aa770c63c22, type: 3}

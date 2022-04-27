@@ -3239,7 +3239,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3273,6 +3273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf02288373e025c4a9f80efc5a5c5e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultAnimator: {fileID: 22100000, guid: 68593fba6c6938e49aa9349498e38b65, type: 2}
   movementSpeed: 3
   jumpSpeed: 8
   gravity: 20
@@ -3289,7 +3290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbdb74364a9f6244aeb0c2737ae504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: -1
+  inventorySize: 4
+  visualInventory: {fileID: 0}
 --- !u!1 &6085344159281082369
 GameObject:
   m_ObjectHideFlags: 0
