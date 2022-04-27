@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    [SerializeField]
     private List<GameObject> inventory = new List<GameObject>();
     public int inventorySize = 4;
     private int currentItemIndex = 0;
@@ -46,8 +47,9 @@ public class InventoryManager : MonoBehaviour
         {
             inventory.Add(itemToAdd);
 
-            visualInventory.transform.GetChild(inventory.IndexOf(itemToAdd)).GetComponent<Image>().enabled = true;
-            visualInventory.transform.GetChild(inventory.IndexOf(itemToAdd)).GetComponent<Image>().sprite = itemToAdd.GetComponent<WeaponController>().weaponData.icon;
+            var child = visualInventory.transform.GetChild(inventory.IndexOf(itemToAdd));
+            child.GetChild(0).GetComponent<Image>().enabled = true;
+            child.GetChild(0).GetComponent<Image>().sprite = itemToAdd.GetComponent<WeaponController>().weaponData.icon;
 
             return true;
         }
@@ -58,8 +60,10 @@ public class InventoryManager : MonoBehaviour
                 if (inventory[i] == null)
                 {
                     inventory[i] = itemToAdd;
-                    visualInventory.transform.GetChild(i).GetComponent<Image>().enabled = true;
-                    visualInventory.transform.GetChild(i).GetComponent<Image>().sprite = itemToAdd.GetComponent<WeaponController>().weaponData.icon;
+
+                    var child = visualInventory.transform.GetChild(i);
+                    child.GetChild(0).GetComponent<Image>().enabled = true;
+                    child.GetChild(0).GetComponent<Image>().sprite = itemToAdd.GetComponent<WeaponController>().weaponData.icon;
 
                     return true;
                 }
@@ -73,8 +77,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (inventory[currentItemIndex])
         {
-            visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().sprite = null;
-            visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().enabled = false;
+            var child = visualInventory.transform.GetChild(currentItemIndex);
+            child.GetChild(0).GetComponent<Image>().sprite = null;
+            child.GetChild(0).GetComponent<Image>().enabled = false;
 
             inventory[currentItemIndex].transform.parent = null;
             inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0, inventory[currentItemIndex].transform.position.z);
@@ -93,14 +98,16 @@ public class InventoryManager : MonoBehaviour
         if (inventory[indexToEquip])
         {
             inventory[indexToEquip].SetActive(true);
-            gameObject.GetComponent<PlayerController>().characterAnimator.runtimeAnimatorController = inventory[indexToEquip].GetComponent<WeaponController>().weaponData.weaponAnimator;
+            gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = inventory[indexToEquip].GetComponent<WeaponController>().weaponData.weaponAnimator;
         }
         else
         {
-            gameObject.GetComponent<PlayerController>().characterAnimator.runtimeAnimatorController = gameObject.GetComponent<PlayerController>().defaultAnimator;
+            gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = gameObject.GetComponent<MovementController>().defaultAnimator;
         }
 
+        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 70);
         currentItemIndex = indexToEquip;
+        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 120);
     }
 
     public void FirstEquip(GameObject itemToEquip)
@@ -109,9 +116,13 @@ public class InventoryManager : MonoBehaviour
         {
             itemToEquip.SetActive(false);
         }
+        else if (inventory.IndexOf(itemToEquip) != currentItemIndex)
+        {
+            itemToEquip.SetActive(false);
+        }
         else
         {
-            gameObject.GetComponent<PlayerController>().characterAnimator.runtimeAnimatorController = itemToEquip.GetComponent<WeaponController>().weaponData.weaponAnimator;
+            gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = itemToEquip.GetComponent<WeaponController>().weaponData.weaponAnimator;
         }
     }
 }

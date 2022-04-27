@@ -9,11 +9,11 @@ public class WeaponController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerController>().availableItem = gameObject;
+        other.GetComponent<MovementController>().availableItem = gameObject;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<PlayerController>().availableItem = null;
+        other.GetComponent<MovementController>().availableItem = null;
     }
 }
