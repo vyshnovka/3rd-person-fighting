@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
 
             if (Vector3.Distance(transform.position, player.transform.position) < attackOffset)
             {
-                enemyAnimator.SetBool("isAttack", true);
+                enemyAnimator.SetBool("isAttacking", true);
             }
         }
     }

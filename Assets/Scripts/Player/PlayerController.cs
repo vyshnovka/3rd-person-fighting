@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
-    private Animator chararterAnimator;
-    //private InventoryManager inventory;
+    [NonSerialized]
+    public Animator characterAnimator;
+    public AnimatorOverrideController defaultAnimator;
+    private InventoryManager inventory;
 
     [SerializeField]
     private float movementSpeed = 5f;
@@ -31,9 +33,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        chararterAnimator = GetComponent<Animator>();
+        characterAnimator = GetComponent<Animator>();
 
-        //inventory = GetComponent<InventoryManager>();
+        inventory = GetComponent<InventoryManager>();
     }
 
     void Update()
@@ -49,28 +51,29 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                chararterAnimator.SetBool("isJumping", true);
+                characterAnimator.SetBool("isJumping", true);
                 direction.y = jumpSpeed;
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canMove)
         {
-            Debug.Log("attack");
+            Attack();
         }
-
         if (Input.GetMouseButtonDown(1))
         {
-            chararterAnimator.SetBool("isBlocking", true);
+            Block();
         }
-        if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1))
         {
-            chararterAnimator.SetBool("isBlocking", false);
+            canMove = true;
+            characterAnimator.SetBool("isBlocking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && availableItem)
+
+        if (Input.GetKeyDown(KeyCode.E) && availableItem && canMove)
         {
-            StartCoroutine(Pick(availableItem));
+            Pick(availableItem);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -86,31 +89,58 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator Pick(GameObject itemToPick)
+    private void Pick(GameObject itemToPick)
     {
-        canMove = false;
-        chararterAnimator.SetBool("isPicking", true);
+        if (inventory.AddToInventory(itemToPick))
+        {
+            canMove = false;
+            characterAnimator.SetBool("isPicking", true);
 
-        yield return new WaitForSeconds(1.5f);
+            StartCoroutine(Utility.TimedEvent(() =>
+            {
+                itemToPick.transform.parent = hand.transform;
+                itemToPick.transform.localPosition = hand.transform.localPosition;
+                itemToPick.transform.localRotation = hand.transform.localRotation;
 
-        itemToPick.transform.parent = hand.transform;
-        itemToPick.transform.localPosition = hand.transform.localPosition;
-        itemToPick.transform.localRotation = hand.transform.localRotation;
+                inventory.FirstEquip(itemToPick);
+            }, 1.5f));
 
-        canMove = true;
+            StartCoroutine(Utility.TimedEvent(() =>
+            {
+                canMove = true;
+            }, 1.7f));
+        }
     }
 
     private void Drop()
     {
-        Debug.Log("dropped");
+        characterAnimator.runtimeAnimatorController = defaultAnimator;
+        inventory.RemoveFromInventory();
     }
+
+    private void Attack()
+    {
+        canMove = false;
+        characterAnimator.SetBool("isAttacking", true);
+
+        StartCoroutine(Utility.TimedEvent(() =>
+        {
+            canMove = true;
+        }, 1.2f));
+    }
+
+    private void Block()
+    {
+        canMove = false;
+        characterAnimator.SetBool("isBlocking", true);
+    } 
 
     private void AnimateMovement()
     {
         float directionX = Vector3.Dot(direction.normalized, transform.right);
         float directionZ = Vector3.Dot(direction.normalized, transform.forward);
 
-        chararterAnimator.SetFloat("directionX", directionX, 0.1f, Time.deltaTime);
-        chararterAnimator.SetFloat("directionZ", directionZ, 0.1f, Time.deltaTime);
+        characterAnimator.SetFloat("directionX", directionX, 0.1f, Time.deltaTime);
+        characterAnimator.SetFloat("directionZ", directionZ, 0.1f, Time.deltaTime);
     }
 }
