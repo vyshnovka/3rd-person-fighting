@@ -4124,7 +4124,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
   m_Controller: {fileID: 9100000, guid: 905555f1fe893104d872ba8dfbd73d96, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -4156,8 +4156,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.7406511, y: 1.8048941, z: 4.977556}
-  m_Center: {x: 0.00000006618896, y: 0.98558086, z: 1.0291945}
+  m_Size: {x: 3.7406511, y: 1.8048941, z: 6}
+  m_Center: {x: 0, y: 0.98558086, z: 2}
 --- !u!114 &8811372500464923389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4170,6 +4170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e90543943d4e7b48b4407e62191d2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats:
+    health: 100
   weapon: {fileID: 705563671569720157}
 --- !u!1 &8888555792346978702
 GameObject:
