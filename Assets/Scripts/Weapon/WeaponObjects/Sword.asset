@@ -15,4 +15,5 @@ MonoBehaviour:
   type: 0
   range: 1.75
   damage: 30
+  weaponAnimator: {fileID: 22100000, guid: 31ddb4f0da959f8439e4a1edae6afa14, type: 2}
   icon: {fileID: 21300000, guid: dba2d5b8dbb64654fa11ca301a4be4c1, type: 3}

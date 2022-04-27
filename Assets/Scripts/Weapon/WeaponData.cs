@@ -16,5 +16,6 @@ public class WeaponData : ScriptableObject
     public float range;
     public int damage;
 
+    public AnimatorOverrideController weaponAnimator;
     public Sprite icon;
 }
