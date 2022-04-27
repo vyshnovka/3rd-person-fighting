@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField]
     private List<GameObject> inventory = new List<GameObject>();
     public int inventorySize = 4;
     private int currentItemIndex = 0;
@@ -82,7 +81,7 @@ public class InventoryManager : MonoBehaviour
             child.GetChild(0).GetComponent<Image>().enabled = false;
 
             inventory[currentItemIndex].transform.parent = null;
-            inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0, inventory[currentItemIndex].transform.position.z);
+            inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0.5f, inventory[currentItemIndex].transform.position.z);
 
             inventory[currentItemIndex] = null;
         }
@@ -99,15 +98,17 @@ public class InventoryManager : MonoBehaviour
         {
             inventory[indexToEquip].SetActive(true);
             gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = inventory[indexToEquip].GetComponent<WeaponController>().weaponData.weaponAnimator;
+
+            SetCurrentWeapon(inventory[indexToEquip]);
         }
         else
         {
             gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = gameObject.GetComponent<MovementController>().defaultAnimator;
         }
 
-        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 70);
+        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 150);
         currentItemIndex = indexToEquip;
-        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 120);
+        visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 220);
     }
 
     public void FirstEquip(GameObject itemToEquip)
@@ -122,7 +123,14 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
+            SetCurrentWeapon(itemToEquip);
             gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = itemToEquip.GetComponent<WeaponController>().weaponData.weaponAnimator;
         }
+    }
+
+    private void SetCurrentWeapon(GameObject currentWeapon)
+    {
+        GetComponent<CombatController>().range = currentWeapon.GetComponent<WeaponController>().weaponData.range;
+        GetComponent<CombatController>().damage = currentWeapon.GetComponent<WeaponController>().weaponData.damage;
     }
 }

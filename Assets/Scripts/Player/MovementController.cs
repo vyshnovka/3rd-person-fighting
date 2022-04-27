@@ -50,7 +50,7 @@ public class MovementController : MonoBehaviour
             inputZ = Input.GetAxis("Horizontal");
             direction = (forward * inputX * movementSpeed) + (right * inputZ * movementSpeed);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && canMove)
             {
                 characterAnimator.SetBool("isJumping", true);
                 direction.y = jumpSpeed;
@@ -91,12 +91,12 @@ public class MovementController : MonoBehaviour
                 itemToPick.transform.rotation = hand.transform.rotation;
 
                 inventory.FirstEquip(itemToPick);
-            }, 1.5f));
+            }, 1f));
 
             StartCoroutine(Utility.TimedEvent(() =>
             {
                 canMove = true;
-            }, 1.7f));
+            }, 2f));
         }
     }
 
