@@ -82,6 +82,7 @@ public class InventoryManager : MonoBehaviour
 
             inventory[currentItemIndex].transform.parent = null;
             inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0.1f, inventory[currentItemIndex].transform.position.z);
+            inventory[currentItemIndex].GetComponent<Collider>().enabled = true;
 
             inventory[currentItemIndex] = null;
         }

@@ -9,7 +9,7 @@ public class ShootingSystem : MonoBehaviour
 
     public void Shoot()
     {
-        var currentBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z), Quaternion.Euler(transform.eulerAngles.x, transform.root.eulerAngles.y, transform.eulerAngles.z));
+        var currentBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z), Quaternion.Euler(0, transform.root.eulerAngles.y, transform.eulerAngles.z));
 
         Destroy(currentBullet, 2f);
     }

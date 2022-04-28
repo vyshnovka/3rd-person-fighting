@@ -86,6 +86,9 @@ public class MovementController : MonoBehaviour
 
             StartCoroutine(Utility.TimedEvent(() =>
             {
+                itemToPick.GetComponent<WeaponController>().ActivateUI();
+                itemToPick.GetComponent<Collider>().enabled = false;
+
                 itemToPick.transform.parent = hand.transform;
                 itemToPick.transform.position = hand.transform.position;
                 itemToPick.transform.rotation = hand.transform.rotation;
@@ -105,6 +108,7 @@ public class MovementController : MonoBehaviour
         GetComponent<CombatController>().damage = GetComponent<CombatController>().defaultDamage;
         GetComponent<CombatController>().range = GetComponent<CombatController>().defaultRange;
         characterAnimator.runtimeAnimatorController = defaultAnimator;
+
         inventory.RemoveFromInventory();
     }
 
