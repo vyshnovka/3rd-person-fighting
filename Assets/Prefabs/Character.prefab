@@ -3183,9 +3183,10 @@ GameObject:
   - component: {fileID: 6060389866548423614}
   - component: {fileID: 7481095210980672595}
   - component: {fileID: 6060389866548423609}
+  - component: {fileID: 4827695663800233228}
   - component: {fileID: 4281296471432049149}
   - component: {fileID: 2726575135655948678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3279,6 +3280,26 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   hand: {fileID: 292882543262169875}
+--- !u!114 &4827695663800233228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060389866548423615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c769d5537d4d342a78e1f6ac42a850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 15
+  angle: 120
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &4281296471432049149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3291,6 +3312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ffd147c4050474d9d690bd789d5b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!114 &2726575135655948678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3303,7 +3326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbdb74364a9f6244aeb0c2737ae504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
   inventorySize: 4
   visualInventory: {fileID: 0}
 --- !u!1 &6085344159281082369
