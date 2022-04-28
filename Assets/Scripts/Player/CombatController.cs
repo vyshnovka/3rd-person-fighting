@@ -89,7 +89,7 @@ public class CombatController : MonoBehaviour
             {
                 movementController.characterAnimator.SetBool("isDead", true);
 
-                Time.timeScale = 0;
+                CanvasManager.instance.Wasted();
 
                 GetComponent<CameraMovement>().enabled = false;
             }

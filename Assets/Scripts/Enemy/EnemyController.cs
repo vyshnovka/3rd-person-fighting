@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(Utility.TimedEvent(() =>
         {
             isAttacking = false;
-        }, 3f));
+        }, 2.5f));
     }
 
     public void TakeDamage(int damage)
@@ -84,6 +84,7 @@ public class EnemyController : MonoBehaviour
 
         if (enemyStats.health <= 0)
         {
+            GetComponent<Collider>().enabled = false;
             enemyAnimator.SetBool("isDead", true);
             player = null;
 
