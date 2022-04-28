@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class EnemyController : MonoBehaviour
     private float range;
     private int damage;
 
-    private Transform player;
+    public GameObject player;
     private bool isAttacking = false;
+
+    [SerializeField]
+    private Slider healthBar;
 
     void Start()
     {
@@ -24,17 +28,23 @@ public class EnemyController : MonoBehaviour
         enemyStats.health = 50;
         damage = 10;
 
+        healthBar.maxValue = enemyStats.health;
+        healthBar.value = enemyStats.health;
+
         range = weapon.GetComponent<WeaponController>().weaponData.range;
         //damage = weapon.GetComponent<WeaponController>().weaponData.damage;
     }
 
     void Update()
     {
-        if (enemyAnimator.GetBool("isSeeing"))
+        if (GetComponent<EnemyViewController>().isSeeing)
         {
+            healthBar.gameObject.SetActive(true);
+            healthBar.transform.LookAt(player.transform);
+
             if (Vector3.Distance(transform.position, player.transform.position) > range)
             {
-                transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
                 transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.003f);
             }
             else if (!isAttacking)
@@ -42,25 +52,9 @@ public class EnemyController : MonoBehaviour
                 Attack();
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
-            other.GetComponent<CombatController>().enemy = gameObject;
-            player = other.transform;
-            enemyAnimator.SetBool("isSeeing", true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<CombatController>().enemy = null;
-            player = null;
-            enemyAnimator.SetBool("isSeeing", false);
+            healthBar.gameObject.SetActive(false);
         }
     }
 
@@ -74,7 +68,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(Utility.TimedEvent(() =>
         {
             playerToHit.GetComponent<CombatController>().TakeDamage(damage);
-        }, 1.5f));
+        }, 1f));
 
         StartCoroutine(Utility.TimedEvent(() =>
         {
@@ -84,6 +78,7 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        healthBar.value -= damage;
         enemyStats.health -= damage;
         enemyAnimator.SetBool("isHit", true);
 
