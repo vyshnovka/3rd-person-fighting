@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CombatController : MonoBehaviour
 {
-    private StatsData playerStats = new StatsData();
+    public StatsData playerStats = new StatsData();
 
     private MovementController movementController;
 
@@ -24,8 +24,7 @@ public class CombatController : MonoBehaviour
     [NonSerialized]
     public float defaultRange = 1.5f;
 
-    [SerializeField]
-    private Slider healthBar;
+    public Slider healthBar;
 
     void Start()
     {
@@ -77,7 +76,10 @@ public class CombatController : MonoBehaviour
             {
                 StartCoroutine(Utility.TimedEvent(() =>
                 {
-                    enemy.GetComponent<EnemyController>().TakeDamage(damage);
+                    if (enemy)
+                    {
+                        enemy.GetComponent<EnemyController>().TakeDamage(damage);
+                    }
                 }, 1f));
             }
         }
