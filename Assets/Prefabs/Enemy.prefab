@@ -4549,7 +4549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  angle: 90
+  angle: 120
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

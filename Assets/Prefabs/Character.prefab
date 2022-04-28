@@ -2712,7 +2712,7 @@ GameObject:
   - component: {fileID: 5523587992872405481}
   - component: {fileID: 5523587992872405486}
   - component: {fileID: 5523587992872405487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -3293,7 +3293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 15
-  angle: 120
+  angle: 100
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3312,7 +3312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ffd147c4050474d9d690bd789d5b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
   healthBar: {fileID: 0}
 --- !u!114 &2726575135655948678
 MonoBehaviour:
@@ -4083,7 +4082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7845099984512341562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
