@@ -102,6 +102,8 @@ public class MovementController : MonoBehaviour
 
     private void Drop()
     {
+        GetComponent<CombatController>().damage = GetComponent<CombatController>().defaultDamage;
+        GetComponent<CombatController>().range = GetComponent<CombatController>().defaultRange;
         characterAnimator.runtimeAnimatorController = defaultAnimator;
         inventory.RemoveFromInventory();
     }

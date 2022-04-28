@@ -97,13 +97,15 @@ public class InventoryManager : MonoBehaviour
         if (inventory[indexToEquip])
         {
             inventory[indexToEquip].SetActive(true);
-            gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = inventory[indexToEquip].GetComponent<WeaponController>().weaponData.weaponAnimator;
+            GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = inventory[indexToEquip].GetComponent<WeaponController>().weaponData.weaponAnimator;
 
             SetCurrentWeapon(inventory[indexToEquip]);
         }
         else
         {
-            gameObject.GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = gameObject.GetComponent<MovementController>().defaultAnimator;
+            GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = GetComponent<MovementController>().defaultAnimator;
+            GetComponent<CombatController>().damage = GetComponent<CombatController>().defaultDamage;
+            GetComponent<CombatController>().range = GetComponent<CombatController>().defaultRange;
         }
 
         visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 150);

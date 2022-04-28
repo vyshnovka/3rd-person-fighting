@@ -16,12 +16,21 @@ public class CombatController : MonoBehaviour
     public float range;
     [NonSerialized]
     public int damage;
+    [NonSerialized]
+    public int defaultDamage = 2;
+    [NonSerialized]
+    public float defaultRange = 1.5f;
 
     [SerializeField]
     private Slider healthBar;
 
     void Start()
     {
+        damage = defaultDamage;
+
+        healthBar.maxValue = playerStats.health;
+        healthBar.value = playerStats.health;
+
         movementController = GetComponent<MovementController>();
     }
 
@@ -58,7 +67,7 @@ public class CombatController : MonoBehaviour
         StartCoroutine(Utility.TimedEvent(() =>
         {
             GetComponent<MovementController>().canMove = true;
-        }, 1.2f));
+        }, 1.5f));
     }
 
     private void Block()
