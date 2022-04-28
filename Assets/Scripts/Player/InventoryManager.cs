@@ -81,7 +81,7 @@ public class InventoryManager : MonoBehaviour
             child.GetChild(0).GetComponent<Image>().enabled = false;
 
             inventory[currentItemIndex].transform.parent = null;
-            inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0.5f, inventory[currentItemIndex].transform.position.z);
+            inventory[currentItemIndex].transform.position = new Vector3(inventory[currentItemIndex].transform.position.x, 0.1f, inventory[currentItemIndex].transform.position.z);
 
             inventory[currentItemIndex] = null;
         }
@@ -132,7 +132,6 @@ public class InventoryManager : MonoBehaviour
 
     private void SetCurrentWeapon(GameObject currentWeapon)
     {
-        GetComponent<CombatController>().range = currentWeapon.GetComponent<WeaponController>().weaponData.range;
-        GetComponent<CombatController>().damage = currentWeapon.GetComponent<WeaponController>().weaponData.damage;
+        GetComponent<CombatController>().weaponInHands = currentWeapon;
     }
 }
