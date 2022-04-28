@@ -27,6 +27,7 @@ public class CombatController : MonoBehaviour
     void Start()
     {
         damage = defaultDamage;
+        range = defaultDamage;
 
         healthBar.maxValue = playerStats.health;
         healthBar.value = playerStats.health;

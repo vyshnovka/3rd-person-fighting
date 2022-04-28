@@ -37,10 +37,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<EnemyViewController>().isSeeing)
+        if (GetComponent<EnemyViewController>().isSeeing && player)
         {
             healthBar.gameObject.SetActive(true);
-            healthBar.transform.LookAt(player.transform);
+            healthBar.transform.LookAt(new Vector3(player.transform.position.x, healthBar.transform.position.y, player.transform.position.z));
 
             if (Vector3.Distance(transform.position, player.transform.position) > range)
             {
