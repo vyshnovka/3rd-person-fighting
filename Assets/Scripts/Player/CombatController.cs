@@ -13,6 +13,9 @@ public class CombatController : MonoBehaviour
     public GameObject enemy = null;
 
     [NonSerialized]
+    public GameObject weaponInHands = null;
+
+    [NonSerialized]
     public float range;
     [NonSerialized]
     public int damage;
@@ -56,12 +59,26 @@ public class CombatController : MonoBehaviour
     {
         movementController.canMove = false;
         movementController.characterAnimator.SetBool("isAttacking", true);
+        
+        if (weaponInHands)
+        {
+            range = weaponInHands.GetComponent<WeaponController>().weaponData.range;
+            damage = weaponInHands.GetComponent<WeaponController>().weaponData.damage;
+
+            if (weaponInHands.GetComponent<ShootingSystem>())
+            {
+                weaponInHands.GetComponent<ShootingSystem>().Shoot();
+            }
+        }
 
         if (enemy)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) <= range)
             {
-                enemy.GetComponent<EnemyController>().TakeDamage(damage);
+                StartCoroutine(Utility.TimedEvent(() =>
+                {
+                    enemy.GetComponent<EnemyController>().TakeDamage(damage);
+                }, 1f));
             }
         }
 
