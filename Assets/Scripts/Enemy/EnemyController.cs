@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyAnimator = GetComponent<Animator>();
 
-        //for testing
+        //small values for eisier testing
         enemyStats.health = 50;
         damage = 10;
 

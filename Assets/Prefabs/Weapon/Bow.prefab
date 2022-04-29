@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 6893438558033673520, guid: ea46c70341fec1b47b4dbcc65a9fd266, type: 3}
-  timeToLive: 2
+  timeToLive: 5
 --- !u!1 &5529471277291130719
 GameObject:
   m_ObjectHideFlags: 0

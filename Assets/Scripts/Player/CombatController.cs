@@ -63,14 +63,13 @@ public class CombatController : MonoBehaviour
         {
             range = weaponInHands.GetComponent<WeaponController>().weaponData.range;
             damage = weaponInHands.GetComponent<WeaponController>().weaponData.damage;
-
-            if (weaponInHands.GetComponent<ShootingSystem>())
-            {
-                weaponInHands.GetComponent<ShootingSystem>().Shoot();
-            }
         }
 
-        if (enemy)
+        if (weaponInHands && weaponInHands.GetComponent<ShootingSystem>())
+        {
+            weaponInHands.GetComponent<ShootingSystem>().Shoot();
+        }
+        else if (enemy)
         {
             if (Vector3.Distance(transform.position, enemy.transform.position) <= range)
             {

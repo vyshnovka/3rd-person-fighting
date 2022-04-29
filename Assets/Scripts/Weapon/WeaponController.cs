@@ -12,14 +12,20 @@ public class WeaponController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ActivateUI();
-        other.GetComponent<MovementController>().availableItem = gameObject;
+        if (other.CompareTag("Player"))
+        {
+            ActivateUI();
+            other.GetComponent<MovementController>().availableItem = gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        ActivateUI();
-        other.GetComponent<MovementController>().availableItem = null;
+        if (other.CompareTag("Player"))
+        {
+            ActivateUI();
+            other.GetComponent<MovementController>().availableItem = null;
+        }
     }
 
     public void ActivateUI()
