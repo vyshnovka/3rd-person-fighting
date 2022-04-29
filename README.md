@@ -12,7 +12,7 @@ Included mechanics:
 - Fighting system (3 types of weapon with different range/damage/animations and health potions)
 - Enemy AI for chasing and attacking the player
 
-Also the game includes some visual aspects a.k. dinamic health bars, pickup availability indicators, etc.    
+Also the game includes some visual aspects a.k. dynamic health bars, pickup availability indicators, etc.    
 As such, there is no point in the game, it is more a prototype than a full-fledged project, but it is what it is.
 
 ## Tools
