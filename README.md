@@ -1,29 +1,19 @@
 # Third-person fighting
 
-This repository contains the test task for the Junior Unity Developer position at Midnight.Works.
+This repository contains a simple fighting game with the third-person camera view on Unity.
 
-## Task
-
-Create a small fighting game with a 3rd person camera view.
-
+Included mechanics:    
 - Movement: WASD    
-- Pick up an item: E    
-- Drop the item: Q    
-- Fight: Left click    
+- Picking up an item: E    
+- Dropping the item: Q    
+- Attack: Left click    
 - Block: Right click    
-- Switch between inventory items.    
-- Put 3 fighting items on the map, each item should have it's own fighting animation.    
-- Player can roam around the map and pick up these items to use.    
-- Create an enemy. The enemy should have a radius of a couple of meters
-for seeing the player. When the enemy sees the player it starts chasing
-him and when it approaches the player close enough it starts fighting
-him.    
-- The enemy and the player should have life bars, each equipped item
-should have different hit points when in use.    
+- Inventory system (switching between inventory slots): 1, 2, 3, 4    
+- Fighting system (3 types of weapon with different range/damage/animations and health potions)
+- Enemy AI for chasing and attacking the player
 
-[Additionally]
-
-- Any weapon should be ranged, which means you should make 3 different ranged weapons.
+Also the game includes some visual aspects a.k. dinamic health bars, pickup availability indicators, etc.    
+As such, there is no point in the game, it is more a prototype than a full-fledged project, but it is what it is.
 
 ## Tools
 
