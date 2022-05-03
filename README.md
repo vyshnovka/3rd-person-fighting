@@ -1,6 +1,8 @@
 # Third-person fighting
 
-This repository contains a simple fighting game with the third-person camera view on Unity.
+This repository contains a simple fighting game with the third-person camera view on Unity.    
+As such, there is no point in the game, it is more a prototype than a full-fledged project, but it is what it is.
+
 
 Included mechanics:    
 - Movement: WASD    
@@ -13,7 +15,6 @@ Included mechanics:
 - Enemy AI for chasing and attacking the player
 
 Also the game includes some visual aspects a.k. dynamic health bars, pickup availability indicators, etc.    
-As such, there is no point in the game, it is more a prototype than a full-fledged project, but it is what it is.
 
 ## Tools
 
