@@ -107,6 +107,8 @@ public class InventoryManager : MonoBehaviour
             GetComponent<MovementController>().characterAnimator.runtimeAnimatorController = GetComponent<MovementController>().defaultAnimator;
             GetComponent<CombatController>().damage = GetComponent<CombatController>().defaultDamage;
             GetComponent<CombatController>().range = GetComponent<CombatController>().defaultRange;
+
+            SetCurrentWeapon(null);
         }
 
         visualInventory.transform.GetChild(currentItemIndex).GetComponent<Image>().color = new Color32(255, 255, 255, 150);

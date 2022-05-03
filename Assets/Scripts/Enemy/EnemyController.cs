@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) > range)
             {
                 transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-                transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.003f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), 0.003f);
             }
             else if (!isAttacking)
             {
