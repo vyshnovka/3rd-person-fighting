@@ -26,10 +26,15 @@ public class CanvasManager : MonoBehaviour
     {
         image.SetActive(true);
 
-        Time.timeScale = 0;
+        Time.timeScale = 0.2f;
+
+        StartCoroutine(Utility.TimedEvent(() =>
+        {
+            SceneLoading(0);
+        }, 0.8f)); 
     }
 
-    public void LoadScene(int index)
+    public void SceneLoading(int index)
     {
         SceneManager.LoadScene(index);
     }
